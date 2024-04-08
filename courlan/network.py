@@ -58,8 +58,9 @@ def redirection_test(url: str) -> str:
     # headers.update({
     #    "User-Agent" : str(sample(settings.USER_AGENTS, 1)), # select a random user agent
     # })
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     try:
-        rhead = HTTP_POOL.request("HEAD", url)  # type:ignore[no-untyped-call]
+        rhead = HTTP_POOL.request("HEAD", url, headers=headers)  # type:ignore[no-untyped-call]
     except Exception as err:
         LOGGER.exception("unknown error: %s %s", url, err)
     else:
